@@ -46,4 +46,17 @@ UNIVERSAL_OUTPUTFOLDER="${BUILD_ROOT}/${CONFIGURATION}-universal"
 >``` ruby
 >cp -rf "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework" "${PROJECT_DIR}"
 >```
+# Add script file to Project
 
+Link bottom image click on (+) button and when menu was shown click on `New Run Script Phase`.
+So you see create new section `Run Script` enter this code here :
+
+``` ruby
+$SRCROOT/build-script.sh
+```
+
+This code get shell file from you `root project path` and run this code for `debugging` mode if you want to run sample project with your framework project.
+
+![script in project](http://uupload.ir/files/v74i__2x-group_3.png)
+
+Now put `build-script file beside of your project` and run this shell with `Terminal` or `Jenkins`
