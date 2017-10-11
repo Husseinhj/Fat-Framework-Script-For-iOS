@@ -7,6 +7,8 @@ So how to build iOS universal framework with shell script and work with `Jenkins
 
 > `Note` :  This script give you iOS universal framework Work with any iOS devices, except `iPhone 5 simulator`. It works in iPhone 5 and iPhone 5s device.
 
+`Don't forget Start`. Thanks a lot to `AdpDigital` team and `Behrad Zari` for give me this chance to find out how it works.
+
 # Add variable to project file
 Go to your project and from `TARGETS` select your project and click on `Build Settings` Tab and like this image click on `(+)` button and in shown menu click on `Add User-Defined Setting` :
 
@@ -48,7 +50,7 @@ UNIVERSAL_OUTPUTFOLDER="${BUILD_ROOT}/${CONFIGURATION}-universal"
 >```
 # Add script file to Project
 
-Link bottom image click on (+) button and when menu was shown click on `New Run Script Phase`.
+Link bottom image click on `(+)` button and when menu was shown click on `New Run Script Phase`.
 So you see create new section `Run Script` enter this code here :
 
 ``` ruby
