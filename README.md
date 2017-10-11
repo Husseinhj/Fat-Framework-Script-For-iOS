@@ -3,7 +3,8 @@ I don't known have you every try to build iOS universal framework with [Jenkins]
 
 thanks dear @himanshumahajan04 If found how can keep my script when i use `iPhone device` for test my framework in this [topic](https://gist.github.com/cromandini/1a9c4aeab27ca84f5d79).
 
-So how to build iOS universal framework with shell script and work with `Jenkins` . Let do this guys  🏃
+So how to build iOS universal framework with shell script and work with `Jenkins` . 
+Let do this guys  🏃
 
 > `Note` :  This script give you iOS universal framework Work with any iOS devices, except `iPhone 5 simulator`. It works in iPhone 5 and iPhone 5s device.
 
