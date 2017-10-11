@@ -5,6 +5,8 @@ thanks dear @himanshumahajan04 If found how can keep my script when i use `iPhon
 
 So how to build iOS universal framework with shell script and work with `Jenkins` . Let do this guys  🏃
 
+> `Note` :  This script give you iOS universal framework Work with any iOS devices, except `iPhone 5 simulator`. It works in iPhone 5 and iPhone 5s device.
+
 # Add variable to project file
 Go to your project and from `TARGETS` select your project and click on `Build Settings` Tab and like this image click on `(+)` button and in shown menu click on `Add User-Defined Setting` :
 
@@ -18,5 +20,27 @@ So very thinks seems to be simple. Let go to see Script and Modify it.
 
 # Build-Script 
 
+We have some variables in Build-Script let see them and of corse should change them.
 
+ **Project Name : **
+ In this variable should enter your project name or your target name
+ 
+``` shell
+TARGET_NAME="MY PROJECT NAME"
+```
+ **Configuration : **
+ Determine your `configuration` is `Debug` or `Release` :
+``` shell
+CONFIGURATION="Release"
+```
+**Universal framework path : **
+Determine you want to get universal framework was copy where :
+``` shell
+UNIVERSAL_OUTPUTFOLDER="${BUILD_ROOT}/${CONFIGURATION}-universal"
+```
+
+> `Note` :  Universal build automatic was copied to root project path with this code :
+>``` shell
+>cp -rf "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework" "${PROJECT_DIR}"
+>```
 
