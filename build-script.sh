@@ -1,7 +1,6 @@
 #!/bin/sh
 
 #  build-script.sh
-#  AdpPushClient
 #
 #  Created by Hussein Habibi on 10/11/17.
 #  Copyright © 2017 AdpDigital. All rights reserved.
@@ -18,7 +17,7 @@ echo 🙎🏻‍♂️🙎🏻‍♂️🙎🏻‍♂️🙎🏻‍♂️🙎�
 ###CONFIGURATION="Debug"
 CONFIGURATION="Release"
 
-TARGET_NAME="AdpPushClient"
+TARGET_NAME="MY PROJECT NAME"
 
 PROJECT_NAME="${TARGET_NAME}"
 
