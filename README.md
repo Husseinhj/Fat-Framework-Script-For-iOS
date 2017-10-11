@@ -22,25 +22,28 @@ So very thinks seems to be simple. Let go to see Script and Modify it.
 
 We have some variables in Build-Script let see them and of corse should change them.
 
- **Project Name : **
+ **Project Name :**
+ 
  In this variable should enter your project name or your target name
  
-``` shell
+``` ruby
 TARGET_NAME="MY PROJECT NAME"
 ```
- **Configuration : **
+ **Configuration :**
+ 
  Determine your `configuration` is `Debug` or `Release` :
-``` shell
+``` ruby
 CONFIGURATION="Release"
 ```
-**Universal framework path : **
+**Universal framework path :**
+
 Determine you want to get universal framework was copy where :
-``` shell
+``` ruby
 UNIVERSAL_OUTPUTFOLDER="${BUILD_ROOT}/${CONFIGURATION}-universal"
 ```
 
 > `Note` :  Universal build automatic was copied to root project path with this code :
->``` shell
+>``` ruby
 >cp -rf "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework" "${PROJECT_DIR}"
 >```
 
