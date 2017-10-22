@@ -1,8 +1,6 @@
 # Build universal framework
 I don't known have you every try to build iOS universal framework with [Jenkins](https://jenkins.io/)  or not. I've try to create a build script to create Universal framework package. It was very hard to find out how it work. After i don't know 1 week or 3 days i finally find out how `xcodebuild` work and when we want's to run with `iPhone device` not simulator we should remove our code.
 
-thanks dear @himanshumahajan04 If found how can keep my script when i use `iPhone device` for test my framework in this [topic](https://gist.github.com/cromandini/1a9c4aeab27ca84f5d79).
-
 So how to build iOS universal framework with shell script and work with `Jenkins` . 
 Let do this guys  🏃
 
