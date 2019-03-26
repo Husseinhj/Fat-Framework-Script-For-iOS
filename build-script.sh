@@ -98,25 +98,39 @@ cp -r "${IPHONE_DEVICE_BUILD_DIR}/armv7s" "frameworks"
 
 cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphoneos/${TARGET_NAME}.build/Objects-normal/armv7s" "Build/Intermediates/${TARGET_NAME}.build/Release-iphoneos/${TARGET_NAME}.build/Objects-normal/armv7s-"
 
+##======================= Build i386 ===========================
+echo "\n\n📱📱📱📱📱📱 Building ARCH = i386 📱📱📱📱📱📱\n\n"
+
+#remove old file
+rm -rf "${SIMULATOR_BUILD_DIR}/i386/${PROJECT_NAME}.framework"
+
+xcodebuild -project "${PROJECT_FILE_PATH}" -target "${PROJECT_NAME}" -configuration "${CONFIGURATION}" -sdk iphonesimulator BUILD_DIR="${BUILD_ROOT}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}"  CONFIGURATION_BUILD_DIR="${SIMULATOR_BUILD_DIR}/i386" SYMROOT="${SYMROOT}" ARCHS="i386" VALID_ARCHS="i386"
+
+cp -rf "${SIMULATOR_BUILD_DIR}/i386" "frameworks"
+
+cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/i386" "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/i386-"
+
 ##======================= Build x86_64 ===========================
 echo "\n\n📱📱📱📱📱📱 Building ARCH = x86_64 📱📱📱📱📱📱\n\n"
 
 #remove old file
-rm -rf "${SIMULATOR_BUILD_DIR}/${PROJECT_NAME}.framework"
-# Copy the framework structure to the universal folder (clean it first)
-rm -rf "${UNIVERSAL_OUTPUTFOLDER}"
+rm -rf "${SIMULATOR_BUILD_DIR}/x86_64/${PROJECT_NAME}.framework"
+### Copy the framework structure to the universal folder (clean it first)
+#rm -rf "${UNIVERSAL_OUTPUTFOLDER}"
+##
+#mkdir -p "${UNIVERSAL_OUTPUTFOLDER}"
 
-mkdir -p "${UNIVERSAL_OUTPUTFOLDER}"
+xcodebuild -project "${PROJECT_FILE_PATH}" -target "${PROJECT_NAME}" -configuration "${CONFIGURATION}" -sdk iphonesimulator BUILD_DIR="${BUILD_ROOT}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}"  CONFIGURATION_BUILD_DIR="${SIMULATOR_BUILD_DIR}/x86_64" SYMROOT="${SYMROOT}" ARCHS="x86_64" VALID_ARCHS="x86_64"
 
-xcodebuild -project "${PROJECT_FILE_PATH}" -target "${PROJECT_NAME}" -configuration "${CONFIGURATION}" -sdk iphonesimulator BUILD_DIR="${BUILD_ROOT}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}"  CONFIGURATION_BUILD_DIR="${SIMULATOR_BUILD_DIR}" SYMROOT="${SYMROOT}" ARCHS="i386 x86_64" VALID_ARCHS="i386 x86_64"
+cp -rf "${SIMULATOR_BUILD_DIR}/x86_64" "${UNIVERSAL_OUTPUTFOLDER}"
 
-cp -rf "${SIMULATOR_BUILD_DIR}/${PROJECT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework"
+cp -rf "${SIMULATOR_BUILD_DIR}/x86_64" "frameworks"
 
-cp -rf "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework" "frameworks"
+cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/x86_64" "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/x86_64-"
 
 if [ "${CONFIGURATION}" = "Release" ]
 then
-    rm -rf "${PWD}/${PROJECT_NAME}.framework"
+rm -rf "${PWD}/${PROJECT_NAME}.framework"
 fi
 echo "\n\n🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️ JENKINS combine all architectures $CONFIGURATION 🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️🙋🏻‍♂️\n\n"
 
@@ -129,8 +143,15 @@ cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphoneos/${TARGET_NAME}.
 rm -rf "Build/Intermediates/${TARGET_NAME}.build/Release-iphoneos/${TARGET_NAME}.build/Objects-normal/arm64"
 cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphoneos/${TARGET_NAME}.build/Objects-normal/arm64-" "Build/Intermediates/${TARGET_NAME}.build/Release-iphoneos/${TARGET_NAME}.build/Objects-normal/arm64"
 
+## ======= Simulator ===================
+rm -rf "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/i386"
+cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/i386-" "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/i386"
+
+rm -rf "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/x86_64"
+cp -r "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/x86_64-" "Build/Intermediates/${TARGET_NAME}.build/Release-iphonesimulator/${TARGET_NAME}.build/Objects-normal/x86_64"
+
 # Smash them together to combine all architectures
-lipo -create  "${PWD}/frameworks/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/arm64/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/armv7/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/armv7s/${PROJECT_NAME}.framework/${PROJECT_NAME}" -output "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}"
+lipo -create  "frameworks/i386/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/x86_64/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/arm64/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/armv7/${PROJECT_NAME}.framework/${PROJECT_NAME}" "frameworks/armv7s/${PROJECT_NAME}.framework/${PROJECT_NAME}" -output "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}"
 
 if [ "${CONFIGURATION}" = "Release" ]
 then
