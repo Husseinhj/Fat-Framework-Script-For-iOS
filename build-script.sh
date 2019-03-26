@@ -3,7 +3,7 @@
 #  build-script.sh
 #
 #  Created by Hussein Habibi on 10/11/17.
-#  Copyright © 2019 AdpDigital. All rights reserved.
+#  Copyright © 2019 Chabok Realtime Solutions. All rights reserved.
 
 if [ "$JENKINS" = "NO" ]
 then
